@@ -23,10 +23,14 @@ class Connector {
      */
     protected $objDriver = null;
 
+
     protected function __construct(){
         $this->objDriver = new MySQL(); //Hardcoded for testing
     }
 
+    /**
+     * @return Connector
+     */
     public static function getInstance(){
         if(self::$objInstance == null){
             self::$objInstance = new self();

@@ -7,12 +7,13 @@
  */
 
 namespace classes\Core\Database\Drivers;
+use classes\Configuration\Database;
 use PDO;
 
 class MySQL extends Driver{
 
     protected function connect(){
-        $this->objDriver = new \PDO($this->getDSN(), 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+        $this->objDriver = new \PDO($this->getDSN(), Database::getConfigValue('db_user'), Database::getConfigValue('db_password'), [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']);
     }
 
     public function query($strQuery){
@@ -32,6 +33,6 @@ class MySQL extends Driver{
     }
 
     protected function getDSN(){
-        return 'mysql:dbname=jun;host=127.0.0.1;port=3306';
+        return 'mysql:dbname='.Database::getConfigValue('db_name').';host='.Database::getConfigValue('db_host').';port=3306';
     }
 }
