@@ -10,11 +10,19 @@ namespace classes\Core\Modules\Models;
 
 
 use classes\Core\Model;
+use classes\Helpers\ObjectManager;
 
 class Home extends Model{
 
     public function test(){
-        print_r($this->objDatabase->pquery('SELECT * FROM vtiger_users', []));
+        $objStoredCache = ObjectManager::getSingleton('\classes\Helpers\Cache\StoredCache');
+        $objStoredCache->addValueToCache('test', 'TestWert');
+        //$objStoredCache->flush();
+        $objStoredCache->debug();
+
+        $objRequestCache = ObjectManager::getSingleton('\classes\Helpers\Cache\RequestCache');
+        $objRequestCache->addValueToCache('test', 'TestWert');
+        $objRequestCache->debug();
     }
 
 }

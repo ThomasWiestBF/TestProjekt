@@ -7,6 +7,8 @@
  */
 namespace classes\Core;
 
+use classes\Helpers\ObjectManager;
+
 abstract class Controller {
 
     /**
@@ -14,14 +16,17 @@ abstract class Controller {
      */
     protected $objModel = null;
 
+    /**
+     * @throws \Exception
+     */
     public function __construct(){
         /*
          * Loading the Controller-matching Model
          */
         $strClassName = str_replace('Controllers', 'Models', get_class($this));
-        if(class_exists($strClassName)) {
-            $this->objModel = $strClassName::getInstance();
-        } else {
+        try{
+            $this->objModel = ObjectManager::getSingleton($strClassName);
+        } catch (Exception $objException){
             throw new \Exception("The model $strClassName was not found!");
         }
     }

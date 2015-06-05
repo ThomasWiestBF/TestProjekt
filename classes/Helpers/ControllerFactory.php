@@ -17,7 +17,6 @@ class ControllerFactory {
      * @return \classes\Core\Controller
      */
     public static function create($strModuleName){
-        $strClassPath = '\classes\Core\Modules\Controllers\\'.$strModuleName;
-        return new $strClassPath();
+        return ObjectManager::getSingleton('\classes\Core\Modules\Controllers\\'.$strModuleName);
     }
 }

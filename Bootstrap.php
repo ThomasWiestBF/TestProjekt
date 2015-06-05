@@ -11,6 +11,7 @@ use \classes\Helpers\ControllerManager;
 class Bootstrap {
     public function __construct(){
         $this->registerAutoloader();
+        \classes\Helpers\Session::init();
         $this->loadActions();
     }
 

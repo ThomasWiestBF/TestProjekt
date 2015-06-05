@@ -14,30 +14,15 @@ use classes\Core\Database\Drivers\MySQL;
 class Connector {
 
     /**
-     * @var self
-     */
-    protected static $objInstance;
-
-    /**
      * @var \classes\Core\Database\Drivers\Driver
      */
     protected $objDriver = null;
 
 
-    protected function __construct(){
+    public function __construct(){
         $this->objDriver = new MySQL(); //Hardcoded for testing
     }
 
-    /**
-     * @return Connector
-     */
-    public static function getInstance(){
-        if(self::$objInstance == null){
-            self::$objInstance = new self();
-        }
-
-        return self::$objInstance;
-    }
 
     /**
      * @param string $strQuery

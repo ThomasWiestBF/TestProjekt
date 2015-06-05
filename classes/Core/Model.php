@@ -7,32 +7,16 @@
  */
 namespace classes\Core;
 
-use classes\Core\Database\Connector;
+use classes\Helpers\ObjectManager;
 
 abstract class Model {
 
     /**
-     * @var self
-     */
-    protected static $objInstance = null;
-
-    /**
-     * @var Connector
+     * @var \classes\Core\Database\Connector
      */
     protected $objDatabase = null;
 
-    protected function __construct(){
-        $this->objDatabase = Connector::getInstance();
-    }
-
-    /**
-     * @return Model|static
-     */
-    public static function getInstance(){
-        if(self::$objInstance == null){
-            self::$objInstance = new static();
-        }
-
-        return self::$objInstance;
+    public function __construct(){
+        $this->objDatabase = ObjectManager::getSingleton('\classes\Core\Database\Connector');
     }
 }
