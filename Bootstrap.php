@@ -22,12 +22,17 @@ class Bootstrap {
      * @throws Exception
      */
     protected function loadActions(){
-        $objController = \classes\Helpers\ControllerFactory::create(ControllerManager::getCurrentModule());
-        $strMethod = ControllerManager::getCurrentAction();
-        if(method_exists($objController, $strMethod)) {
-            call_user_func([$objController, $strMethod]);
-        } else {
-            throw new Exception("The Method $strMethod does not exist!");
+        try {
+            $objController = \classes\Helpers\ControllerFactory::create(ControllerManager::getCurrentModule());
+            $strMethod = ControllerManager::getCurrentAction();
+            if (method_exists($objController, $strMethod)) {
+                call_user_func([$objController, $strMethod]);
+            } else {
+                throw new Exception("The Method $strMethod does not exist!");
+            }
+        } catch(Exception $objEx){
+            \classes\Helpers\Request::set(\classes\Configuration\Modules::getConfigValue('standard_module_key'), \classes\Configuration\Modules::getConfigValue('standard_module_logged_in'));
+            $this->loadActions();
         }
     }
 

@@ -1,0 +1,14 @@
+{
+    "name": "thomas/TestProjekt",
+    "require": {
+        "twig/twig": "~1.18"
+    },
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Thomas Wiest",
+            "email": "thomas.wiest@brainformatik.com"
+        }
+    ],
+    "minimum-stability": "RC"
+}

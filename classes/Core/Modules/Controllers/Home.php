@@ -10,11 +10,12 @@ namespace classes\Core\Modules\Controllers;
 
 
 use classes\Core\Controller;
-use classes\Helpers\Elements;
 
 class Home extends Controller{
 
     public function index(){
+        $this->objViewEngine->assign('test', 'TestVar');
+        $this->objViewEngine->render('test.twig');
         $this->objModel->test();
     }
 

@@ -17,6 +17,10 @@ class ControllerFactory {
      * @return \classes\Core\Controller
      */
     public static function create($strModuleName){
-        return ObjectManager::getSingleton('\classes\Core\Modules\Controllers\\'.$strModuleName);
+        try {
+            return ObjectManager::getSingleton('\classes\Core\Modules\Controllers\\' . $strModuleName);
+        } catch(Exception $objEx){
+            throw new \Exception('The module '.$strModuleName.' does not exist!');
+        }
     }
 }

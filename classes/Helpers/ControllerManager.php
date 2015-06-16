@@ -9,6 +9,8 @@
 namespace classes\Helpers;
 
 
+use classes\Configuration\Modules;
+
 class ControllerManager {
 
     /**
@@ -21,7 +23,11 @@ class ControllerManager {
      * @return string
      */
     public static function getCurrentModule(){
-        return 'Home';
+        $strModule = Modules::getConfigValue('standard_module_logged_in');
+        if(Request::is_set(Modules::getConfigValue('standard_module_key'))){
+            $strModule = Request::get(Modules::getConfigValue('standard_module_key'));
+        }
+        return $strModule;
     }
 
     /**
@@ -33,6 +39,10 @@ class ControllerManager {
      * @return string
      */
     public static function getCurrentAction(){
-        return 'index';
+        $strAction = Modules::getConfigValue('standard_action_logged_in');
+        if(Request::is_set(Modules::getConfigValue('standard_action_key'))){
+            $strAction = Request::get(Modules::getConfigValue('standard_action_key'));
+        }
+        return $strAction;
     }
 }
