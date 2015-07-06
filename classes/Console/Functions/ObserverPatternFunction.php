@@ -1,21 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Thomas
- * Date: 05.07.2015
- * Time: 11:52
- */
-
 namespace classes\Console\Functions;
 
 use classes\Console\Functions\ObserverPattern\Observer;
 use classes\Console\Functions\ObserverPattern\Subject;
 
 class ObserverPatternFunction extends ConsoleFunction{
-
-    public function __construct(){
-
-    }
 
     public function execute(){
         $objObserver = new Observer\FAZVerlag();

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Thomas
- * Date: 05.07.2015
- * Time: 12:12
- */
+
 namespace classes\Console\Functions\ObserverPattern\Observer;
 
 abstract class AZeitungsVerlag {
