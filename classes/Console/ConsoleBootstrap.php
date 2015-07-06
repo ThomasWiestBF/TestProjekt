@@ -7,12 +7,21 @@ class ConsoleBootstrap {
 
     protected $aryAttributes = [];
 
+    /**
+     * How to call:
+     * php -f bin/console.php function=Observer for an Observer Pattern Test
+     * php -f bin/console.php function=Decorator for an Decorator Pattern Test
+     *
+     * @param $aryArguments
+     */
     public function __construct($aryArguments){
         $this->getAttributes($aryArguments);
         if($this->aryAttributes['function'] == 'Observer'){
             $objFunction = new Functions\ObserverPatternFunction($this->aryAttributes);
-            $objFunction->execute();
+        } elseif($this->aryAttributes['function'] == 'Decorator'){
+            $objFunction = new Functions\DecoratorPatternFunction($this->aryAttributes);
         }
+        $objFunction->execute();
     }
 
     /**
