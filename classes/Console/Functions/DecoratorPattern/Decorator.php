@@ -1,7 +1,7 @@
 <?php
 namespace classes\Console\Functions\DecoratorPattern;
 
-abstract class Decorator extends Component{
+abstract class Decorator implements Component{
     protected $objDecorator;
 
     public function __construct($objDecorator){
